@@ -1,0 +1,15 @@
+pipelineJob("spring-petclinic-job") {
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote{
+            url("https://github.com/arjunarveti619/spring-petclinic.git")
+          }
+          branch('refs/heads/master')
+        }
+      }
+      scriptPath("Jenkinsfile")
+    }
+  }
+}
