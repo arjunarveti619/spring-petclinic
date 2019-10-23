@@ -4,6 +4,10 @@ pipeline {
         // stage('Checkout Project from Git'){
         //    git url: "https://github.com/arjunarveti619/spring-petclinic.git"
         // }
+	 stage('Initialize'){
+       		 def dockerHome = tool 'myDocker'
+        	env.PATH = "${dockerHome}/bin:${env.PATH}"
+   	 }
         stage('Maven install'){
            agent {
                docker {
