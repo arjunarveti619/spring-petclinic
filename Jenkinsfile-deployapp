@@ -1,0 +1,14 @@
+node {
+  def remote = [:]
+  remote.name = 'privatevm'
+  remote.host = 'spring-petclinic-app.koreacentral.cloudapp.azure.com'
+  remote.user = 'adminuser'
+  remote.password = 'Admin123'
+  remote.allowAnyHosts = true
+  stage('Clone Repo') {
+      git url: 'https://github.com/arjunarveti619/devops-task'
+  }
+  stage('Remote SSH') {
+    sshScript remote: remote, script: "spring-petclinc-init.sh"
+  }
+}
