@@ -6,9 +6,12 @@ node {
   remote.password = 'Admin123'
   remote.allowAnyHosts = true
   stage('Clone Repo') {
-      git url: 'https://github.com/arjunarveti619/devops-task'
+      git url: 'https://github.com/arjunarveti619/spring-petclinic'
   }
   stage('Remote SSH') {
-    sshScript remote: remote, script: "spring-petclinc-init.sh"
+    sshScript remote: remote, script: "deploy-spring-petclinic.sh"
+  }
+  stage("Clean up workspace"){
+      cleanWs()
   }
 }
