@@ -11,7 +11,7 @@ if [ -x "$(command -v docker)" ]; then
 else
     echo "Install docker"
 # Docker
-    sudo apt remove --yes docker docker-engine docker.io \
+    sudo apt-get remove --yes docker docker-engine docker.io \
         && sudo apt update \
         && sudo apt --yes --no-install-recommends install \
             apt-transport-https \
