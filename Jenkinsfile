@@ -22,10 +22,8 @@ pipeline {
     stage('Docker Push') {
       agent any
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh "docker login -u arjunarveti -p 127b5c6e-c73e-4075-af8d-aef8abddf6ea"
           sh 'docker push arjunarveti/spring-petclinic:latest'
-        }
       }
     }
     stage('Deploy Spring Petclinic app') {
