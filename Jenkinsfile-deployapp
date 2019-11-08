@@ -1,10 +1,18 @@
 node {
   def remote = [:]
-  remote.name = 'privatevm'
-  remote.host = 'spring-petclinic-app.koreacentral.cloudapp.azure.com'
-  remote.user = 'adminuser'
-  remote.password = 'Admin123'
-  remote.allowAnyHosts = true
+  def spClientId = env.CLIENT_ID
+  def spClientSecret = env.CLIENT_SECRET
+  def spTenantId = env.TENANT_ID
+
+  stage('Initialise') {
+       script {
+          remote.name = 'privatevm' 
+          remote.host = sh(returnStdout: true, script: 'az keyvault secret show --vault-name "test-ee-devops-vault" --name "secret-private-vm-host" --query value|tr -d \'"\'').trim()
+          remote.user = sh(returnStdout: true, script: 'az keyvault secret show --vault-name "test-ee-devops-vault" --name "secret-private-vm-username" --query value|tr -d \'"\'').trim()
+          remote.password = sh(returnStdout: true, script: 'az keyvault secret show --vault-name "test-ee-devops-vault" --name "secret-private-vm-password" --query value|tr -d \'"\'').trim()
+          remote.allowAnyHosts = true
+       }
+  }
   stage('Clone Repo') {
       git url: 'https://github.com/arjunarveti619/spring-petclinic'
   }

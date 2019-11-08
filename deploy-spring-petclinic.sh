@@ -38,4 +38,4 @@ done
 
 #Deploy latest Spring petclinic app
 sudo docker pull arjunarveti/spring-petclinic
-sudo docker run -d -p 8080:8080 arjunarveti/spring-petclinic
+sudo docker run -d -p 443:443 arjunarveti/spring-petclinic
